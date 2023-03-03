@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Scissors</title>
+	<style>
+		/* CSS for the page */
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			background-color: #36393F;
+		}
+
+		h1 {
+			color: white;
+			text-align: center;
+			margin-top: 40px;
+		}
+
+		p {
+			color: white;
+			margin: 10px 0;
+		}
+
+		button {
+			background-color: #7289DA;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			margin-right: 10px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		button:hover {
+			background-color: #677BC4;
+		}
+
+		#result {
+			font-size: 30px;
+			font-weight: bold;
+			margin-top: 50px;
+			text-align: center;
+		}
+
+		#computer-move {
+			font-size: 20px;
+			text-align: center;
+			margin-top: 20px;
+		}
+
+		#footer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			padding: 10px;
+			background-color: #2F3136;
+			color: white;
+			text-align: center;
+			font-size: 14px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Rock Paper Scissors</h1>
+
+	<p>Choose your move:</p>
+	<button id="rock">Rock</button>
+	<button id="paper">Paper</button>
+	<button id="scissors">Scissors</button>
+
+	<p id="result"></p>
+	<p id="computer-move"></p>
+
+	<div id="footer">
+		<p>arnav kharwar</p>
+	</div>
+
+	<script>
+		// Add click event listeners to each button
+		document.getElementById("rock").addEventListener("click", function() {
+			play("rock");
+		});
+
+		document.getElementById("paper").addEventListener("click", function() {
+			play("paper");
+		});
+
+		document.getElementById("scissors").addEventListener("click", function() {
+			play("scissors");
+		});
+
+		// Function to play the game
+		function play(playerMove) {
+			var computerMove = Math.random();
+
+			if (computerMove < 0.33) {
+				computerMove = "rock";
+			} else if (computerMove < 0.67) {
+				computerMove = "paper";
+			} else {
+				computerMove = "scissors";
+			}
+
+			// Display the computer's move
+			document.getElementById("computer-move").innerHTML = "Computer chooses " + computerMove;
+
+			if (playerMove === computerMove) {
+				document.getElementById("result").innerHTML = "Tie!";
+			} else if ((playerMove === "rock" && computerMove === "scissors") ||
+				(playerMove === "paper" && computerMove === "rock") ||
+				(playerMove === "scissors" && computerMove === "paper")) {
+				document.getElementById("result").innerHTML = "You win!";
+			} else {
+				document.getElementById("result").innerHTML = "Computer wins!";
+			}
+		}
+	</script>
+</body>
+</html>
